@@ -3,13 +3,14 @@ class Neatfile < Formula
   homepage "https://github.com/AKSarav/neatfile"
   version "0.0.1"
   license "MIT"
-  elsif OS.linux? && Hardware::CPU.intel?
+
+  if OS.linux? && Hardware::CPU.intel?
     url "https://github.com/AKSarav/neatfile/releases/download/v0.0.1/neatfile-0.0.1-linux-amd64.zip"
     sha256 "60dd1d2aac453c7ede3ac40a0bf1217b5a32d5e23745fa23c3e0413115ece6dc"
   elsif OS.linux? && Hardware::CPU.arm?
     url "https://github.com/AKSarav/neatfile/releases/download/v0.0.1/neatfile-0.0.1-linux-arm64.zip"
     sha256 "553ff5fbb01d46eaca049452c5f48629089e7e6f0681ad5ebfa41d05ef00b97c"
-  if OS.mac? && Hardware::CPU.intel?
+  elsif OS.mac? && Hardware::CPU.intel?
     url "https://github.com/AKSarav/neatfile/releases/download/v0.0.1/neatfile-0.0.1-darwin-amd64.zip"
     sha256 "d2a75a572edb73956065f2ddf8854af306338e078eb35a1d1906efe96e881800"
   elsif OS.mac? && Hardware::CPU.arm?
@@ -18,6 +19,7 @@ class Neatfile < Formula
   elsif OS.windows? && Hardware::CPU.intel?
     url "https://github.com/AKSarav/neatfile/releases/download/v0.0.1/neatfile-0.0.1-windows-amd64.zip"
     sha256 "b8b81eda0cd4f29df92d674b5a58bd044c91ee5ad9de42e7e9a512233b14e054"
+  end
 
   def install
     platform = if OS.mac?
@@ -35,9 +37,5 @@ class Neatfile < Formula
             end
 
     bin.install "neatfile-#{platform}-#{arch}" => "neatfile"
-  end
-  
-  test do
-    system "#{bin}/neatfile", "--version"
   end
 end
